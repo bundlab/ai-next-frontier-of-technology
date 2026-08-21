@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-python:
-    name: Lint & Format Python Code
+    name: Lint & Test Python Code
     runs-on: ubuntu-24.04
 
     steps:
@@ -39,18 +39,12 @@ jobs:
           python examples/agent_patterns/ch01_hybrid_loop.py
 
   validate-markdown:
-    name: Validate Markdown & Links
+    name: Validate Markdown Links
     runs-on: ubuntu-24.04
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
-      - name: Check Markdown Links
-        uses: gautamkrishnar/blog-post-workflow@master # Or standard linkcheck action
-        continue-on-error: false
-        with:
-          max_post_count: 1
 
       - name: Markdown Link Check
         uses: gaurav-nelson/github-action-markdown-link-check@v1
