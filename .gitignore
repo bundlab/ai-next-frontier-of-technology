@@ -1,0 +1,37 @@
+# Python / Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+*.venv
+
+# Environment & Secret Files
+.env
+.env.local
+*.pem
+*.key
+
+# IDE & OS Metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Build & Testing Artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+*.log
+
+# Ebook / Output Generated Artifacts
+*.pdf
+*.epub
+*.mobi
