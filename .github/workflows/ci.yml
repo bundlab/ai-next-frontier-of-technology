@@ -1,0 +1,60 @@
+name: CI Workflow
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-python:
+    name: Lint & Format Python Code
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ruff black pydantic
+
+      - name: Check Formatting with Black
+        run: |
+          black --check examples/
+
+      - name: Lint Python with Ruff
+        run: |
+          ruff check examples/
+
+      - name: Test Python Executables
+        run: |
+          python examples/agent_patterns/ch01_hybrid_loop.py
+
+  validate-markdown:
+    name: Validate Markdown & Links
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Check Markdown Links
+        uses: gautamkrishnar/blog-post-workflow@master # Or standard linkcheck action
+        continue-on-error: false
+        with:
+          max_post_count: 1
+
+      - name: Markdown Link Check
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          use-verbose-mode: 'no'
+          config-file: '.github/workflows/markdown-link-check-config.json'
