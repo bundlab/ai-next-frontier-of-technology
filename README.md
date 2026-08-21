@@ -48,8 +48,8 @@ Modern software engineering is undergoing a foundational paradigm shift. Buildin
 ## 📂 Repository Structure
 
 ```text
-.
-├── README.md
+ai-next-frontier-of-technology
+│
 ├── docs/
 │   └── chapters/
 │       ├── ch01-ai-first-architecture.md
@@ -64,18 +64,23 @@ Modern software engineering is undergoing a foundational paradigm shift. Buildin
 │       ├── ch10-fine-tuning-quantization-distillation.md
 │       ├── ch11-edge-ai-and-local-runtimes.md
 │       └── ch12-future-proof-system-architect.md
+│
 ├── examples/
 │    ├── agent_patterns/
 │    ├── rag_pipelines/
 │    └── eval_frameworks/
+│
+├── .gitignore
 ├── CONTRIBUTING.md
-└── LICENSE
+├── LICENSE
+├── README.md
+└── setup_repo.sh
 ```
 
 ## 🛠️ How to Read & Contribute
 1. Clone the repository:
     ```bash
-    git clone [https://github.com/your-username/ai-next-frontier-of-technology.git](https://github.com/your-username/ai-next-frontier-of-technology.git)
+    git clone [https://github.com/bundlab/ai-next-frontier-of-technology.git](https://github.com/bundlab/ai-next-frontier-of-technology.git)
     cd ai-next-frontier-of-technology
     ```
 2. Explore code samples: Check the examples/ directory for executable Python and TypeScript implementation patterns corresponding to each chapter.
