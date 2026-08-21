@@ -3,15 +3,15 @@
 Chapter 01: The AI-First Architecture Paradigm
 Example: Hybrid Control Loop Pattern
 
-This executable script demonstrates wrapping a probabilistic AI/LLM decision engine
-inside a deterministic boundary using Pydantic schema validation, automatic retries,
+This executable script demonstrates wrapping a probabilistic AI/LLM decision engine 
+inside a deterministic boundary using Pydantic schema validation, automatic retries, 
 and a safe fallback path.
 """
 
 import json
 import logging
 import time
-from typing import List, Dict, Any, Optional
+
 from pydantic import BaseModel, Field, ValidationError
 
 # Configure structured logging
@@ -42,7 +42,7 @@ class TaskExecutionPlan(BaseModel):
     requires_human_approval: bool = Field(
         default=False, description="Manual gate trigger"
     )
-    steps: List[TaskStep] = Field(
+    steps: list[TaskStep] = Field(
         ..., min_items=1, description="List of execution steps"
     )
 
@@ -75,7 +75,7 @@ class SimulatedLLMProvider:
             return json.dumps(
                 {
                     "task_name": "Database Schema Migration",
-                    "confidence_score": "INVALID_HIGH_CONFIDENCE",  # Causes Pydantic ValidationError
+                    "confidence_score": "INVALID_HIGH_CONFIDENCE",
                     "requires_human_approval": False,
                     "steps": [
                         {
@@ -88,11 +88,12 @@ class SimulatedLLMProvider:
             )
 
         elif self._call_count == 2:
-            logger.warning("Simulating LLM output with missing required fields...")
+            logger.warning(
+                "Simulating LLM output with missing required fields..."
+            )
             return json.dumps(
                 {
                     "task_name": "Database Schema Migration",
-                    # Missing steps key causes validation failure
                     "confidence_score": 0.88,
                 }
             )
@@ -132,11 +133,13 @@ class SimulatedLLMProvider:
 
 class HybridOrchestrator:
     """
-    Wraps the LLM provider within strict validation rules, backoff logic,
+    Wraps the LLM provider within strict validation rules, backoff logic, 
     and deterministic fallback execution paths.
     """
 
-    def __init__(self, llm_provider: SimulatedLLMProvider, max_retries: int = 3):
+    def __init__(
+        self, llm_provider: SimulatedLLMProvider, max_retries: int = 3
+    ):
         self.llm_provider = llm_provider
         self.max_retries = max_retries
 
@@ -210,12 +213,16 @@ class HybridOrchestrator:
 
 
 def main():
-    print("\n--- Running Chapter 01: Hybrid Control Loop Pattern Example ---\n")
+    print(
+        "\n--- Running Chapter 01: Hybrid Control Loop Pattern Example ---\n"
+    )
 
     provider = SimulatedLLMProvider()
     orchestrator = HybridOrchestrator(llm_provider=provider, max_retries=3)
 
-    user_prompt = "Generate a zero-downtime database migration plan for production."
+    user_prompt = (
+        "Generate a zero-downtime database migration plan for production."
+    )
 
     # Execute orchestrator loop
     final_plan = orchestrator.execute_task(user_prompt)
