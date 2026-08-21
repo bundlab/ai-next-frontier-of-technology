@@ -64,10 +64,12 @@ Modern software engineering is undergoing a foundational paradigm shift. Buildin
 │       ├── ch10-fine-tuning-quantization-distillation.md
 │       ├── ch11-edge-ai-and-local-runtimes.md
 │       └── ch12-future-proof-system-architect.md
-└── examples/
-    ├── agent_patterns/
-    ├── rag_pipelines/
-    └── eval_frameworks/
+├── examples/
+│    ├── agent_patterns/
+│    ├── rag_pipelines/
+│    └── eval_frameworks/
+├── CONTRIBUTING.md
+└── LICENSE
 ```
 
 ## 🛠️ How to Read & Contribute
